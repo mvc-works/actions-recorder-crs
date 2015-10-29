@@ -1,5 +1,11 @@
 
+var
+  React $ require :react
+  ReactDOM $ require :react-dom
+
 require :../style/main.css
 
-console.log :loaded chrome.devtools.inspectedWindow.a
+var
+  Page $ React.createFactory $ require :./app/page
 
+ReactDOM.render (Page) (document.querySelector :#app)

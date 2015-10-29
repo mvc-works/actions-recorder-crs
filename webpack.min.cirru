@@ -11,13 +11,14 @@ var
     :vendor $ [] :react :react-dom :immutable :actions-recorder :hsl
 
   :output $ {}
-    :path :build/
+    :path :extension/dist/
     :filename :[name].[chunkhash:8].js
 
   :resolve config.resolve
   :module $ {}
     :loaders $ []
       {} (:test /\.cirru$) (:loader :cirru-script) (:ignore /node_modules)
+      {} (:test /\.json$) (:loader :json)
       {} (:test "/\.(png|jpg)$") (:loader :url-loader)
         :query $ {} (:limit 100)
       {} (:test /\.css$) $ :loader
@@ -32,4 +33,4 @@ var
         var
           json $ stats.toJson
           content $ JSON.stringify json.assetsByChunkName null 2
-        return $ fs.writeFileSync :build/assets.json content
+        return $ fs.writeFileSync :extension/dist/assets.json content

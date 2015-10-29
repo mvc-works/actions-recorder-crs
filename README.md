@@ -1,44 +1,53 @@
 
-Workflow based on Webpack & CirruScript
+Actions Recorder Chrome Extension
 ----
 
-Scaffold for personal projects.
+> This project is in very early stage, with bugs.
 
-### Bash Alias
-
-```bash
-# webpack-workflow
-export wf=/Users/chen/repo/mvc-works/webpack-workflow/
-alias workflow="
-cp $wf/gulpfile.* .;
-cp $wf/package.json .;
-cp $wf/webpack.* .;
-cp $wf/template.cirru .;
-cp $wf/.gitignore .;
-cp $wf/.npmignore .;
-cp $wf/README.md .;
-cp -r $wf/style .;
-cp -r src .;
-git init;
-"
-```
+In DevTools debugger for https://github.com/teambition/actions-recorder
 
 ### Usage
 
-* Development
+In order to use this extension, you need to first install extension.
+By now you need to build code by yourself.
+Notice `actions-recorder@1.6.1-alpha` is used with this project.
 
-```text
-npm i
+Then add expose global variable so content script may access:
+
+```coffee
+window.__recorder__ = recorder
+```
+
+And subscribe changes of actions-recorder, post change message:
+
+```coffee
+window.postMessage source: 'actions-recorder', kind: 'change', location.toString()
+```
+
+Open `Recorder` tab in your DevTools, try make actions to force page rerendering.
+As I said there are quite some bugs.
+
+
+### Develop
+
+`extension/` holds the extension code, run these commands for html page:
+
+```bash
+# set env.dev=false in gulpfile.cirru
+webpack --config webpack.min.cirru
+gulp html
+```
+
+or run this to develop:
+
+```bash
 gulp html
 webpack-dev-server --hot
 ```
 
-* Production
+for more details:
 
-```text
-gulp buld
-gulp rsync
-```
+https://github.com/mvc-works/webpack-workflow
 
 ### License
 

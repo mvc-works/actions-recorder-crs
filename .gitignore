@@ -3,4 +3,5 @@
 /lib/
 /node_modules/
 /assets.json
-/index.html
+/extension/index.html
+/extension/dist/

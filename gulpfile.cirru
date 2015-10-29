@@ -4,7 +4,7 @@ var
   sequence $ require :run-sequence
   exec $ . (require :child_process) :exec
   env $ object
-    :dev true
+    :dev false
     :main :http://localhost:8080/build/main.js
     :vendor :http://localhost:8080/build/vendor.js
     :style :http://localhost:8080/build/style.css
@@ -15,10 +15,10 @@ gulp.task :html $ \ (cb)
     fs $ require :fs
     assets
   if (not env.dev) $ do
-    = assets $ require :./build/assets.json
-    = env.main $ + :./build/ $ . assets.main 0
-    = env.style $ + :./build/ $ . assets.main 1
-    = env.vendor $ + :./build/ assets.vendor
+    = assets $ require :./extension/dist/assets.json
+    = env.main $ + :dist/ $ . assets.main 0
+    = env.style $ + :dist/ $ . assets.main 1
+    = env.vendor $ + :dist/ assets.vendor
   fs.writeFile :extension/index.html (html env) cb
 
 gulp.task :del $ \ (cb)
