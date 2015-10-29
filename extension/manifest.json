@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Actions Recorder",
+  "description": "Actions Recorder",
+  "icons": {
+    "128": "images/recorder.png"
+  },
+  "version": "0.0.1",
+  "minimum_chrome_version": "25",
+  "devtools_page": "devtools.html",
+  "content_security_policy" : "script-src 'self' 'unsafe-eval' http://localhost:8080; object-src 'self'"
+}
